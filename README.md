@@ -20,7 +20,7 @@ Galaxy image.
 
 1. It is necessary to link the Galaxy build container and the Postgres one. For
    this, we need to create a dedicated bridge network so the `docker build`
-   command can link to a running Postgres container. (You would require to use `sudo`):
+   command can link to a running Postgres container:
     ```
    docker network create gnet
    ```
@@ -33,7 +33,7 @@ Galaxy image.
    build the image, do not use the `/tmp` directory, as it is periodically
    cleaned by the OS, so your data will not be persisted properly.
 
-   2.1 Running the native `docker` command (You would require to use `sudo`)
+   2.1 Running the native `docker` command 
    ```
    docker run -d --rm -e POSTGRES_DB=galaxy -e POSTGRES_USER=galaxydbuser \
    -e POSTGRES_PASSWORD=42 -P --network gnet --name gpsql \
@@ -42,10 +42,10 @@ Galaxy image.
 
    2.2 Using convenience scripts
    To use these scripts, you will need to have `psql` command installed locally.
-   Then, tun `pg-run.sh` to start the Postgres container with the newly created
+   Then, run `pg-run.sh` to start the Postgres container with the newly created
    network :
    ```
-   ./scripts/pg-run.sh <path-to-directory>
+   ./scripts/pg-run.sh <path-to-directory-volume-of-the-database>
    ```
 
    If you would like to create the Galaxy database as a dedicated step (as
